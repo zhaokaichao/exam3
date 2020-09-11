@@ -1,31 +1,51 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <header>
+      <van-tabbar v-model="active" :fixed='false'>
+        <van-tabbar-item to='/like'>关注</van-tabbar-item>
+        <van-tabbar-item to='/'>发现</van-tabbar-item>
+        <van-tabbar-item to='/city'>同城</van-tabbar-item>
+      </van-tabbar>
+    </header>
+    <main><router-view/></main>
+    <footer></footer>
+    
   </div>
 </template>
+<script>
+export default {
+  data() {
+    return {
+      active: 0,
+    };
+  },
+}
+</script>
 
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
+#app{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  header{
+    height: 50px;
+  }
+  main{
+    flex: 1;
+    overflow: auto;
+    li{
+      text-align: center;
+      display: inline-block;
+      margin: 20px 0;
+      width:50%;
+      position: relative;
+      .small{
+        border-radius: 50%;
+        position: absolute;
+        left: 30px;
+        bottom: -10px;
+      }
     }
   }
 }
